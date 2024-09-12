@@ -1,0 +1,158 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7du3c836rl3e"]
+
+[ext_resource type="Script" path="res://addons/menu and options/menu_and_options.gd" id="1_wqk7w"]
+
+[node name="menu and options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wqk7w")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+autoplay = true
+bus = &"musics"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="background" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.85, 0, 0.482, 0.108)
+
+[node name="menu" type="CanvasLayer" parent="."]
+
+[node name="buttons" type="VBoxContainer" parent="menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.5
+offset_top = -50.5
+offset_right = 39.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="play" type="Button" parent="menu/buttons"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.775902, 0.578095, 1.92523e-07, 1)
+text = "PLAY"
+
+[node name="options" type="Button" parent="menu/buttons"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.776471, 0.576471, 0, 1)
+text = "OPTIONS"
+
+[node name="exit" type="Button" parent="menu/buttons"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.776471, 0.576471, 0, 1)
+text = "EXIT"
+
+[node name="options" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TabContainer" type="TabContainer" parent="options"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tab_alignment = 1
+current_tab = 0
+
+[node name="video" type="TabBar" parent="options/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="options/TabContainer/video"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.5
+offset_top = -20.0
+offset_right = 63.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fullscreen" type="CheckButton" parent="options/TabContainer/video/VBoxContainer"]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="back" type="Button" parent="options/TabContainer/video/VBoxContainer"]
+layout_mode = 2
+text = "back"
+
+[node name="audio" type="TabBar" parent="options/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="options/TabContainer/audio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Master" type="Label" parent="options/TabContainer/audio/VBoxContainer"]
+layout_mode = 2
+text = "Master"
+
+[node name="Master Slider" type="HSlider" parent="options/TabContainer/audio/VBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+value = 10.0
+
+[node name="Music" type="Label" parent="options/TabContainer/audio/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+horizontal_alignment = 1
+
+[node name="Music Slider" type="HSlider" parent="options/TabContainer/audio/VBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+value = 10.0
+
+[node name="SFX" type="Label" parent="options/TabContainer/audio/VBoxContainer"]
+layout_mode = 2
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="SFX Slider" type="HSlider" parent="options/TabContainer/audio/VBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+value = 10.0
+
+[node name="back" type="Button" parent="options/TabContainer/audio/VBoxContainer"]
+layout_mode = 2
+text = "back"
+
+[connection signal="pressed" from="menu/buttons/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="menu/buttons/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="menu/buttons/exit" to="." method="_on_exit_pressed"]
+[connection signal="toggled" from="options/TabContainer/video/VBoxContainer/fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="pressed" from="options/TabContainer/video/VBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="options/TabContainer/audio/VBoxContainer/Master Slider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="options/TabContainer/audio/VBoxContainer/Music Slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="options/TabContainer/audio/VBoxContainer/SFX Slider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="options/TabContainer/audio/VBoxContainer/back" to="." method="_on_back_pressed"]
