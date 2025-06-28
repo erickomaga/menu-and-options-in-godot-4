@@ -1,10 +1,11 @@
 extends Control
 
-@onready var music = $music
 							#---Thanks!---#
-						#Thanks for using my plugin!
-						#For more tips subscribe to:
-						#https://www.youtube.com/@Sr.Erickxz
+					#Thanks for using my plugin!
+					#For more tips subscribe to:
+					#https://www.youtube.com/@Sr.Erickxz
+
+@onready var music = $music
 var sample = false
 
 func _ready():
